@@ -5,8 +5,8 @@ import { Button } from "./ui/button";
 export function Navbar() {
 
   return (
-    <nav className="border-b border-gray-200 bg-red-200">
-      <div className="container mx-auto h-16 flex items-center px-4 justify-between bg-green-200">
+    <nav className="border-b border-gray-200 bg-white">
+      <div className="container mx-auto h-16 flex items-center px-4 justify-between">
         <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary">
           <Briefcase />
           Job Tracker
