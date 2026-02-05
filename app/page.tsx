@@ -1,4 +1,4 @@
-"use client"
+
 import ImageTabs from "@/components/image-tabs";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Briefcase, CheckCircle2, TrendingUp } from "lucide-react";
@@ -8,13 +8,12 @@ import Link from "next/link";
 
 export default function Home() {
 
-
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="container mx-auto px-4 py-32 bg-red-200">
-          <div className="mx-auto max-w-4xl text-center bg-green-200">
+        <section className="container mx-auto px-4 py-32">
+          <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-black mb-6 text-4xl md:text-6xl font-bold">
               A better way to track your job application.
             </h1>
@@ -37,7 +36,7 @@ export default function Home() {
 
         {/* Features Section */}
         <section className="border-t bg-white py-24">
-          <div className="container mx-auto px-4 bg-red-100">
+          <div className="container mx-auto px-4">
             <div className="grid gap-12 md:grid-cols-3">
               <div className="flex flex-col">
                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">

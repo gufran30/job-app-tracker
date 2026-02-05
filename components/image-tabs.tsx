@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import { useState } from "react";
 import { Button } from "./ui/button";
@@ -9,7 +11,7 @@ export default function ImageTabs() {
 
 
   return (
-    <section className="border-t py-16 bg-blue-100">
+    <section className="border-t py-16">
       <div className="mx-auto max-w-6xl">
         {/* Tabs */}
         <div className="flex gap-2 justify-center mb-8">
