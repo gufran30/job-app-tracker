@@ -90,7 +90,7 @@ export default function SignUp() {
               {loading ? "Creating account..." : "Sign Up"}
             </Button>
             <p className="text-center text-sm text-gray-600">
-              Already have an account?
+              Already have an account?{" "}
               <Link href="/sign-in" className="font-medium text-primary hover:underline">
                 Sign in
               </Link>
