@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { signUp } from "@/lib/auth/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SignUp() {
@@ -13,9 +15,11 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // state for error & loading state => good user experience
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -23,6 +27,23 @@ export default function SignUp() {
     setError("");
     setLoading(true);
     // code for what happened after submitting....
+
+    // sign the user
+    try {
+      // this will save the data(name, email, etc) into our mongoDB DB via auth.ts
+      const result = await signUp.email({ name, email, password })
+
+      if (result.error) {
+        setError(result.error?.message ?? "Failed to sign up")
+      } else {
+        // redirect to dashboard page
+        router.push("/dashboard")
+      }
+    } catch (err) {
+      setError("An unexpected error occured");
+    } finally {
+      setLoading(false)
+    }
 
   }
 

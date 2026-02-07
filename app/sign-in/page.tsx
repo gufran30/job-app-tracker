@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { signIn } from "@/lib/auth/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SignIn() {
@@ -16,6 +18,8 @@ export default function SignIn() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const router = useRouter();
+
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -23,6 +27,23 @@ export default function SignIn() {
     setError("");
     setLoading(true);
     // code for what happened after submitting....
+
+    // sign the user
+    try {
+      // this will save the data(name, email, etc) into our mongoDB DB via auth.ts
+      const result = await signIn.email({ email, password })
+
+      if (result.error) {
+        setError(result.error?.message ?? "Failed to sign in")
+      } else {
+        // redirect to dashboard page
+        router.push("/dashboard")
+      }
+    } catch (err) {
+      setError("An unexpected error occured");
+    } finally {
+      setLoading(false)
+    }
 
   }
 
@@ -76,7 +97,7 @@ export default function SignIn() {
               className="w-full bg-primary hover:bgprimary/90"
               disabled={loading}
             >
-              {loading ? "Signing in.." : "Sign In"}
+              {loading ? "Signing in..." : "Sign In"}
             </Button>
             <p className="text-center text-sm text-gray-600">
               Don't  have an account?{" "}
